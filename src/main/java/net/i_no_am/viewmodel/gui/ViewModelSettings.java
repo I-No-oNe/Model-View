@@ -1,10 +1,18 @@
+
 package net.i_no_am.viewmodel.gui;
 
-import net.i_no_am.viewmodel.config.Config;
 
-public class ViewModelSettings {
+import io.github.itzispyder.improperui.ImproperUIAPI;
+import io.github.itzispyder.improperui.config.ConfigReader;
+import net.i_no_am.viewmodel.client.Global;
+
+public class ViewModelSettings implements Global {
+
+    public static boolean no_swing = false;
+    public static boolean no_food_swing = false;
 
     public static int normal_division = 10;
+
     private static float main_rotation_x;
     private static float main_position_x;
     private static float main_rotation_z;
@@ -20,19 +28,26 @@ public class ViewModelSettings {
     private static float off_position_y;
 
     public static void loadConfigValues() {
-        main_rotation_x = (float) Config.readDouble("main-rotation-x");
-        main_position_x = (float) Config.readDouble("main-position-x") / normal_division;
-        main_rotation_z = (float) Config.readDouble("main-rotation-z");
-        main_position_z = (float) Config.readDouble("main-position-z") / normal_division;
-        main_rotation_y = (float) Config.readDouble("main-rotation-y");
-        main_position_y = (float) Config.readDouble("main-position-y") / normal_division;
-        off_rotation_x = (float) Config.readDouble("off-rotation-x");
-        off_position_x = (float) Config.readDouble("off-position-x") / normal_division;
-        off_rotation_z = (float) Config.readDouble("off-rotation-z");
-        off_position_z = (float) Config.readDouble("off-position-z") / normal_division;
-        off_rotation_y = (float) Config.readDouble("off-rotation-y");
-        off_position_y = (float) Config.readDouble("off-position-y") / normal_division;
+        ConfigReader VmConfig = ImproperUIAPI.getConfigReader(modId, "config.properties");
+//        view model
+        main_rotation_x = (float) VmConfig.readFloat("main-rotation-x", 0.0F);
+        main_position_x = (float) VmConfig.readFloat("main_position_x", 0.0F) / normal_division;
+        main_rotation_z = (float) VmConfig.readFloat("main-rotation-z", 0.0F);
+        main_position_z = (float) VmConfig.readFloat("main-position-z", 0.0F) / normal_division;
+        main_rotation_y = (float) VmConfig.readFloat("main-rotation-y", 0.0F);
+        main_position_y = (float) VmConfig.readFloat("main-position-y", 0.0F) / normal_division;
+        off_rotation_x = (float) VmConfig.readFloat("off-rotation-x", 0.0F);
+        off_position_x = (float) VmConfig.readFloat("off-position-x", 0.0F) / normal_division;
+        off_rotation_z = (float) VmConfig.readFloat("off-rotation-z", 0.0F);
+        off_position_z = (float) VmConfig.readFloat("off-position-z", 0.0F) / normal_division;
+        off_rotation_y = (float) VmConfig.readFloat("off-rotation-y", 0.0F);
+        off_position_y = (float) VmConfig.readFloat("off-position-y", 0.0F) / normal_division;
+//        No Hand Swing Animation
+        no_swing = VmConfig.readBool("no-hand-swing", false);
+//        No Eating Hand Animation
+        no_food_swing = VmConfig.readBool("no-food-swing", false);
     }
+
 
     public static float getMainRotationX() {
         return main_rotation_x;
