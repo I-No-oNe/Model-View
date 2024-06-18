@@ -1,11 +1,11 @@
 div #background {
     size: 100%
     background-color: black
-    opacity: 0.1
+    opacity: 0
 }
 
 div #content {
-    size: 420 200
+    size: 420 210
     background-color: none
 
     child-align: grid
@@ -36,7 +36,7 @@ div #title {
     }
     div #panel -right {
         margin: 5
-        size: 200 140
+        size: 200 145
         background-color: #80000000
         background-clip: margin
         border-radius: 3
@@ -112,12 +112,17 @@ div #title {
             val: 0
             width: 75%
             }
-        }
+            checkbox #no-food-swing -viewmodel:config.properties:no-food-swing {}
+            label {
+                inner-text: "No Eating Animations"
+                margin-left: 4
+            }
+    }
 }
 
     div #panel -left {
         margin: 5
-        size: 200 140
+        size: 200 145
         background-color: #80000000
         background-clip: margin
         border-radius: 3
@@ -193,6 +198,11 @@ div #title {
             max: 45
             val: 0
             width: 75%
+            }
+            checkbox #no-hand-swing -viewmodel:config.properties:no-hand-swing {}
+            label {
+                inner-text: "No Swing Animations"
+                margin-left: 4
             }
         }
     }
